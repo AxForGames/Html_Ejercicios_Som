@@ -3,18 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Usuarios en Linux</title>
+    <title>Tutoriales SOM</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; padding: 20px; background-color: #f4f4f4; }
-        h1 { color: #333; }
+        h1 { color: rgb(0, 0, 0); }
         .container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        pre { background: #eee; padding: 10px; border-radius: 5px; }
+        p { background: #afcdff; padding: 10px; border-radius: 5px; font-size: 14px; }
         .section { display: none; margin-top: 20px; }
-        button { margin: 5px; padding: 10px; border: none; background: #007bff; color: white; border-radius: 5px; cursor: pointer; }
-        button:hover { background: #0056b3; }
+        button { margin: 5px; padding: 12px 20px; border: none; background: linear-gradient(145deg, #007bff, #0056b3); color: white; border-radius: 5px; cursor: pointer; font-size: 16px; position: relative;transition: background-color 0.3s ease, transform 0.2s ease; }
+        
+        button::after { content: ''; position: absolute; top: 50%; left: 50%; width: 0%; height: 0%; background: rgba(255, 255, 255, 0.1); border-radius: 50%; transition: width 0.3s ease, height 0.3s ease, top 0.3s ease, left 0.3s ease; transform: translate(-50%, -50%); }
+        button:hover { background: linear-gradient(145deg, #0056b3, #007bff); transform: scale(1.05); }
+        button:active {transform: scale(0.98); }
+        button:hover::after {width: 100%; height: 100%; top: 50%; left: 50%;}
     </style>
     <script>
         function mostrarSeccion(id) {
+            document.querySelectorAll('#GesUsu .section').forEach(section => section.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+        }
+        function mostrarTema(id) {
             document.querySelectorAll('.section').forEach(section => section.style.display = 'none');
             document.getElementById(id).style.display = 'block';
         }
@@ -22,58 +30,88 @@
 </head>
 <body>
     <div class="container">
-        <h1>Gestión de Usuarios en Linux</h1>
-        <p>Selecciona un tema:</p>
-        <button onclick="mostrarSeccion('crear')">Crear Usuario</button>
-        <button onclick="mostrarSeccion('modificar')">Modificar Usuario</button>
-        <button onclick="mostrarSeccion('eliminar')">Eliminar Usuario</button>
-        <button onclick="mostrarSeccion('listar')">Listar Usuarios</button>
-        <button onclick="mostrarSeccion('permisos')">Modificar Permisos</button>
-        
-        <div id="crear" class="section">
-            <h2>Crear un usuario</h2>
-            <p>Para añadir un nuevo usuario al sistema:</p>
-            <pre>sudo useradd -m nombre_usuario</pre>
-            <p>Para establecer la contraseña del usuario:</p>
-            <pre>sudo passwd nombre_usuario</pre>
+        <h1>Tutoriales</h1>
+        <button onclick="mostrarTema('GesUsu')">Gestion de usuarios</button>
+        <button onclick="mostrarTema('ComCar')">Compartir carpetas</button>
+        <div id="ComCar" class="section">
+            <div class="container">
+            <h1>Compartir carpetas</h1>
+            <h2>Selecciona un tema:</h2>
+            <button>Introducción</button>
+            </div>
         </div>
-        
-        <div id="modificar" class="section">
-            <h2>Modificar un usuario</h2>
-            <p>Para cambiar el nombre de usuario:</p>
-            <pre>sudo usermod -l nuevo_nombre antiguo_nombre</pre>
-            <p>Para agregar un usuario a un grupo:</p>
-            <pre>sudo usermod -aG grupo nombre_usuario</pre>
-        </div>
-        
-        <div id="eliminar" class="section">
-            <h2>Eliminar un usuario</h2>
-            <p>Para eliminar un usuario sin eliminar su directorio personal:</p>
-            <pre>sudo userdel nombre_usuario</pre>
-            <p>Para eliminar un usuario y su directorio personal:</p>
-            <pre>sudo userdel -r nombre_usuario</pre>
-        </div>
-        
-        <div id="listar" class="section">
-            <h2>Listar usuarios</h2>
-            <p>Para ver la lista de usuarios en el sistema:</p>
-            <pre>cat /etc/passwd</pre>
-        </div>
-        
-        <div id="permisos" class="section">
-            <h2>Modificar Permisos de un Archivo</h2>
-            <p>Para otorgar permisos específicos a un usuario sin cambiar la propiedad del archivo, usa ACLs:</p>
-            <pre>sudo setfacl -m u:usuario:rwx archivo</pre>
-            <p>Para ver los permisos ACL de un archivo:</p>
-            <pre>getfacl archivo</pre>
-            <p>Para revocar los permisos de un usuario específico:</p>
-            <pre>sudo setfacl -x u:usuario archivo</pre>
-            <p>Explicación:</p>
-            <ul>
-                <li><strong>-m u:usuario:rwx</strong>: Asigna permisos de lectura, escritura y ejecución a un usuario específico.</li>
-                <li><strong>getfacl archivo</strong>: Muestra los permisos ACL actuales del archivo.</li>
-                <li><strong>-x u:usuario</strong>: Elimina los permisos ACL de ese usuario en el archivo.</li>
-            </ul>
+        <div id="GesUsu" class="section">
+            <div class="container">
+                <h1>Gestión de Usuarios en Linux</h1>
+                <h2>Selecciona un tema:</h2>
+                <button onclick="mostrarSeccion('introducción')">Introducción</button>
+                <button onclick="mostrarSeccion('crear')">Crear Usuario</button>
+                <button onclick="mostrarSeccion('modificar')">Modificar Usuario</button>
+                <button onclick="mostrarSeccion('eliminar')">Eliminar Usuario</button>
+                <button onclick="mostrarSeccion('listar')">Listar Usuarios</button>
+                <button onclick="mostrarSeccion('permisos')">Modificar Permisos</button>
+
+                <div id="introducción" class="section">
+                    <h2>Introducción</h2>
+                    <h3>¿Qué es un usuario?</h3>
+                    <p>un usuario es una entidad (persona o proceso) que interactúa con un sistema, generalmente a través de una cuenta con un identificador único. Los usuarios tienen permisos específicos que determinan qué acciones pueden realizar dentro del sistema, como acceder a archivos o ejecutar programas.</p>
+                    <h3>¿Diferencias entre usuarios normales y root?</h3>
+                    <p>En sistemas operativos como Linux, los usuarios normales tienen privilegios limitados, lo que significa que no pueden realizar tareas administrativas como instalar software o modificar configuraciones críticas del sistema. Por otro lado, el usuario 'root' tiene privilegios de superusuario, permitiéndole realizar cualquier acción en el sistema, lo que lo convierte en un usuario con acceso total a todos los recursos del sistema.</p>
+                    <h3>Importancia de la gestión de usuarios</h3>
+                    <p>La gestión de usuarios es fundamental para mantener la seguridad y el control de un sistema. A través de una adecuada gestión de cuentas, se pueden asignar permisos específicos a los usuarios, controlar el acceso a recursos y evitar que personas no autorizadas realicen acciones que puedan poner en peligro la integridad del sistema. Esto también es esencial para la administración de sistemas multicanal, donde se deben manejar distintos niveles de acceso para cada usuario o grupo.</p>
+                </div>
+
+                <div id="crear" class="section">
+                    <h2>Crear un usuario</h2>
+                    <h3>Para añadir un nuevo usuario al sistema:</h3>
+                    <p>sudo useradd -m nombre_usuario</p>
+                    <h3>Para establecer la contraseña del usuario:</h3>
+                    <p>sudo passwd nombre_usuario</p>
+                </div>
+
+                <div id="modificar" class="section">
+                    <h2>Modificar un usuario</h2>
+                    <h3>Saber en que usuario estás conectado</h3>
+                    <p></p>
+                    <h3>Saber que usuarios estan conectados al equipo</h3>
+                    <p></p>
+                    <h3>Para conocer el ID del usuario</h3>
+                    <p></p>
+                    <h3>Para cambiar el nombre de usuario:</h3>
+                    <p>sudo usermod -l nuevo_nombre antiguo_nombre</p>
+                    <h3>Para agregar un usuario a un grupo:</h3>
+                    <p>sudo usermod -aG grupo nombre_usuario</p>
+                    <h3>Para cambiar la contraseña</h3>
+                    <p></p>
+                </div>
+
+                <div id="eliminar" class="section">
+                    <h2>Eliminar un usuario</h2>
+                    <h3>Para eliminar un usuario sin eliminar su directorio personal:</h3>
+                    <p>sudo userdel nombre_usuario</p>
+                    <h3>Para eliminar un usuario y su directorio personal:</h3>
+                    <p>sudo userdel -r nombre_usuario</p>
+                </div>
+
+                <div id="listar" class="section">
+                    <h2>Listar usuarios</h2>
+                    <h3>Para ver la lista de usuarios en el sistema:</h3>
+                    <p>cat /etc/passwd</p>
+                </div>
+
+                <div id="permisos" class="section">
+                    <h2>Modificar Permisos de un Archivo</h2>
+                    <h3>Para otorgar permisos específicos a un usuario sin cambiar la propiedad del archivo, usa ACLs:</h3>
+                    <p>sudo setfacl -m u:usuario:rwx archivo</p>
+                    <h3>Para ver los permisos ACL de un archivo:</h3>
+                    <p>getfacl archivo</p>
+                    <h3>Para revocar los permisos de un usuario específico:</h3>
+                    <p>sudo setfacl -x u:usuario archivo</p>
+                    <h3>Explicación:</h3>
+                    <p>-m u:usuario:rwx: Asigna permisos de lectura, escritura y ejecución a un usuario específico.getfacl archivo: Muestra los permisos ACL actuales del archivo.
+                        -x u:usuario: Elimina los permisos ACL de ese usuario en el archivo.</p>
+                </div>
+            </div>
         </div>
     </div>
 </body>
