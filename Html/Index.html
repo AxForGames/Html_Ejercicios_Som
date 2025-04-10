@@ -22,6 +22,10 @@
             document.querySelectorAll('#GesUsu .section').forEach(section => section.style.display = 'none');
             document.getElementById(id).style.display = 'block';
         }
+        function mostrarSeccion2(id) {
+            document.querySelectorAll('#ComCar .section').forEach(section => section.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+        }
         function mostrarTema(id) {
             document.querySelectorAll('.section').forEach(section => section.style.display = 'none');
             document.getElementById(id).style.display = 'block';
@@ -33,16 +37,108 @@
         <h1>Tutoriales</h1>
         <button onclick="mostrarTema('GesUsu')">Gestion de usuarios</button>
         <button onclick="mostrarTema('ComCar')">Compartir carpetas</button>
-        <div id="ComCar" class="section">
+        <button onclick="mostrarTema('basicopostinstalacion')">Postinstalación básica</button>
+
+        <div id="basicopostinstalacion" class="section">
             <div class="container">
-            <h1>Compartir carpetas</h1>
+            <h1>Postinstalación básica</h1>
             <h2>Selecciona un tema:</h2>
-            <button>Introducción</button>
+            <button onclick="mostrarSeccion('introducción3')">Introducción</button>
+                <div id="introducción3" class="section">
+                    <h2>Introducción</h2>
+                </div>
             </div>
         </div>
+
+        <div id="ComCar" class="section">
+            <div class="container">
+                <h1>Compartir carpetas</h1>
+                <h2>Selecciona un tema:</h2>
+                <button onclick="mostrarSeccion2('introduccion2')">Introducción</button>
+                    <div id="introduccion2" class="section">
+                        <p>La compartición de archivos en una red es fundamental para la colaboración entre equipos y la gestión eficiente de los recursos. En un entorno de red, compartir carpetas y archivos facilita el intercambio de datos, la centralización de información y el acceso remoto.</p>
+                        <p>En un sistema operativo como Linux, existen diversas formas de compartir carpetas entre equipos. Dependiendo del contexto y de los sistemas involucrados, se utilizan diferentes protocolos y herramientas. Los escenarios más comunes incluyen:</p>
+                        <ul>
+                            <li><strong>Entre equipos Linux:</strong> Usar herramientas como NFS (Network File System) o SSHFS.</li>
+                            <li><strong>Con equipos Windows:</strong> Utilizar Samba para permitir la interoperabilidad entre Linux y Windows.</li>
+                            <li><strong>En un servidor:</strong> Usar NFS o Samba para compartir archivos con múltiples usuarios o máquinas en una red.</li>
+                        </ul>
+                    </div>
+                <h6></h6>
+                <div class="container">
+                    <h3>Herramientas y Métodos</h3>
+                    <button onclick="mostrarSeccion2('introduccion2')">Samba</button>
+                    <button onclick="mostrarSeccion2('introduccion2')">NFS</button>
+                    <button onclick="mostrarSeccion2('introduccion2')">SSHFS</button>
+                </div>
+                <div class="container">
+                    <h3>Ejemplo práctico</h3>
+                    <h6></h6><button onclick="mostrarSeccion2('introduccion2')">Instalación de Samba</button>
+                    <h6></h6><button onclick="mostrarSeccion2('introduccion2')">Crear una carpeta para compartir</button>
+                    <h6></h6><button onclick="mostrarSeccion2('introduccion2')">Configuración del archivo</button>
+                    <h6></h6><button onclick="mostrarSeccion2('introduccion2')">Crear un usuario de Samba</button>
+                    <h6></h6><button onclick="mostrarSeccion2('introduccion2')">Reiniciar el servicio Samba</button>
+                    <h6></h6><button onclick="mostrarSeccion2('introduccion2')">Acceder desde un equipo Windows</button>
+                </div>
+                <div class="container">
+                    <button onclick="mostrarSeccion2('introduccion2')">Introducción</button>
+                </div>
+                <div class="container">
+                    <button onclick="mostrarSeccion2('introduccion2')">Introducción</button>
+                </div>
+                <div class="container">
+                    <button onclick="mostrarSeccion2('introduccion2')">Introducción</button>
+                </div>
+                    <div id="impcomarcred" class="section">
+                        <h2>Importancia de compartir archivos en la red</h2>
+                        <p>Compartir archivos en la red permite que múltiples usuarios puedan acceder a la misma información de manera simultánea. Esto es esencial en entornos de trabajo colaborativos donde varias personas necesitan acceder a documentos, configuraciones o archivos de trabajo de forma centralizada. Además, la centralización de archivos en un servidor reduce la redundancia de datos y facilita las copias de seguridad.</p>
+                    </div>
+                    <div id="difescuso" class="section">
+                        <h2>Diferentes escenarios de uso</h2>
+                        <p>Los escenarios más comunes de uso de la compartición de carpetas incluyen:</p>
+                        <ul>
+                            <li><strong>Entre sistemas Linux:</strong> Se puede usar NFS (Network File System) o SSHFS (SSH File System).</li>
+                            <li><strong>Entre Linux y Windows:</strong> Usando Samba, que permite la interoperabilidad entre ambos sistemas operativos.</li>
+                            <li><strong>Para servidores de archivos:</strong> Configurar NFS o Samba para centralizar los archivos accesibles por múltiples usuarios o máquinas en la red.</li>
+                        </ul>
+                    </div>
+                    <div id="EjePra" class="section">
+                        <h2>Ejemplo práctico</h2>
+                        <h3>Configuración de Samba en Linux para compartir carpetas con Windows</h3>
+                        <p>A continuación, se muestra cómo configurar Samba para compartir una carpeta entre un sistema Linux y un equipo Windows:</p>
+                        <h4>Paso 1: Instalación de Samba</h4>
+                        <pre><code>sudo apt update
+sudo apt install samba</code></pre>
+                        <h4>Paso 2: Crear una carpeta para compartir</h4>
+                        <pre><code>mkdir /home/usuario/compartido</code></pre>
+                        <p>Establecer los permisos adecuados para la carpeta compartida:</p>
+                        <pre><code>chmod 777 /home/usuario/compartido</code></pre>
+                        <h4>Paso 3: Configurar Samba</h4>
+                        <p>Editar el archivo de configuración de Samba:</p>
+                        <pre><code>sudo nano /etc/samba/smb.conf</code></pre>
+                        <p>Agregar la configuración de la carpeta compartida:</p>
+                        <pre><code>[compartido]
+   path = /home/usuario/compartido
+   browseable = yes
+   read only = no
+   guest ok = yes</code></pre>
+                        <h4>Paso 4: Crear un usuario de Samba</h4>
+                        <p>Para crear un usuario de Samba, usa el siguiente comando:</p>
+                        <pre><code>sudo smbpasswd -a usuario</code></pre>
+                        <h4>Paso 5: Reiniciar el servicio Samba</h4>
+                        <p>Reinicia el servicio de Samba para aplicar los cambios:</p>
+                        <pre><code>sudo systemctl restart smbd</code></pre>
+                        <h4>Paso 6: Acceder desde Windows</h4>
+                        <p>Desde el equipo Windows, abre el explorador de archivos y escribe en la barra de direcciones:</p>
+                        <pre><code>\\IP_DEL_SERVIDOR\compartido</code></pre>
+                        <p>Ingresa las credenciales si es necesario para acceder a la carpeta compartida.</p>
+                    </div>
+            </div>
+        </div>
+
         <div id="GesUsu" class="section">
             <div class="container">
-                <h1>Gestión de Usuarios en Linux</h1>
+                <h1>Gestión de usuarios en Linux</h1>
                 <h2>Selecciona un tema:</h2>
                 <button onclick="mostrarSeccion('introducción')">Introducción</button>
                 <button onclick="mostrarSeccion('crear')">Crear Usuario</button>
@@ -72,17 +168,17 @@
                 <div id="modificar" class="section">
                     <h2>Modificar un usuario</h2>
                     <h3>Saber en que usuario estás conectado</h3>
-                    <p></p>
+                    <p>whoami</p>
                     <h3>Saber que usuarios estan conectados al equipo</h3>
-                    <p></p>
-                    <h3>Para conocer el ID del usuario</h3>
-                    <p></p>
+                    <p>who</p>
+                    <h3>Para conocer el ID del usuario al que estas conectado</h3>
+                    <p>id -u</p>
                     <h3>Para cambiar el nombre de usuario:</h3>
                     <p>sudo usermod -l nuevo_nombre antiguo_nombre</p>
                     <h3>Para agregar un usuario a un grupo:</h3>
                     <p>sudo usermod -aG grupo nombre_usuario</p>
-                    <h3>Para cambiar la contraseña</h3>
-                    <p></p>
+                    <h3>Para cambiar la contraseña de un usuario</h3>
+                    <p>sudo passwd nombre_usuario</p>
                 </div>
 
                 <div id="eliminar" class="section">
